@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t  docker-multi-test -f ./client/Dockerfile ./client
+  - docker build -t webworkers/multi-test -f ./client/Dockerfile ./client
 
 script:
-  - docker run -e CI=true  docker-multi-test npm run test -- --coverage
+  - docker run -e CI=true webworkers/multi-test npm run test -- --coverage
 
 after_success:
   - docker build -t webworkers/multi-client ./client
