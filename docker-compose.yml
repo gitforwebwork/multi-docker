@@ -11,9 +11,7 @@ services:
       context: ./nginx
     ports:
       - '3050:80'
-  frontend:
-    depends_on:
-      - postgres
+  api:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
@@ -21,7 +19,7 @@ services:
       - /app/node_modules
       - ./server:/app
     environment:
-      - REDIS_HOST=redis,
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
       - PGUSER=postgres
       - PGHOST=postgres
